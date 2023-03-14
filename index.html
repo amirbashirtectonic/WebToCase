@@ -23,6 +23,18 @@
         }
       }
       setInterval(timestamp, 500);
+      function validate() {
+        if (grecaptcha.getResponse() == "") {
+          swal({
+            title: "Error!",
+            text: "Please verify you are a human",
+            icon: "warning",
+          });
+          return false;
+        } else {
+          return true;
+        }
+      }
     </script>
     <style>
       .borderless td,
@@ -62,6 +74,7 @@
         <form
           action="https://tauck--devpro.sandbox.my.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8"
           method="POST"
+          onsubmit="return validate()"
         >
           <input
             type="hidden"
