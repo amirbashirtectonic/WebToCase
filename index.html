@@ -1,0 +1,218 @@
+<html lang="en">
+  <head>
+    <title>Web to Case</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script>
+      function timestamp() {
+        var response = document.getElementById("g-recaptcha-response");
+        if (response == null || response.value.trim() == "") {
+          var elems = JSON.parse(
+            document.getElementsByName("captcha_settings")[0].value
+          );
+          elems["ts"] = JSON.stringify(new Date().getTime());
+          document.getElementsByName("captcha_settings")[0].value =
+            JSON.stringify(elems);
+        }
+      }
+      setInterval(timestamp, 500);
+    </script>
+    <style>
+      .borderless td,
+      .borderless th {
+        border: none !important;
+      }
+
+      .clsLeftAlign {
+        text-align: right;
+      }
+
+      .clsButton {
+        border-radius: 5px;
+        border: 0px #ffffff;
+        width: 70px !important;
+        height: 35px;
+      }
+
+      label {
+        font-weight: normal !important;
+      }
+
+      input,
+      textarea {
+        width: 350px !important;
+      }
+
+      body {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="header.png" alt="Tauck" />
+    <div class="container">
+      <div class="row">
+        <form
+          action="https://tauck--devpro.sandbox.my.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8"
+          method="POST"
+        >
+          <input
+            type="hidden"
+            name="captcha_settings"
+            value='{"keyname":"WebToCase","fallback":"true","orgId":"00D780000008gfO","ts":""}'
+          />
+          <input type="hidden" name="orgid" value="00D780000008gfO" />
+          <input type="hidden" name="recordType" value="01278000000L3GdAAK" />
+          <input type="hidden" name="retURL" value="http://www.tauck.com" />
+
+          <!--  ----------------------------------------------------------------------  -->
+          <!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
+          <!--  these lines if you wish to test in debug mode.                          -->
+          <!--  <input type="hidden" name="debug" value=1>                              -->
+          <!--  <input type="hidden" name="debugEmail" value="tauck@gettectonic.com">   -->
+          <!--  ----------------------------------------------------------------------  -->
+
+          <table
+            cellspacing="0"
+            border="0"
+            cellpadding="2"
+            class="table table-sm borderless"
+          >
+            <tr>
+              <td class="clsLeftAlign">
+                <label for="name">First Name</label>
+              </td>
+              <td>
+                <input
+                  class="form-control"
+                  id="00N78000000Zs0Z"
+                  maxlength="150"
+                  name="00N78000000Zs0Z"
+                  size="20"
+                  type="text"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td class="clsLeftAlign">
+                <label for="name">Last Name</label>
+              </td>
+              <td>
+                <input
+                  class="form-control"
+                  id="00N78000000Zs0e"
+                  maxlength="150"
+                  name="00N78000000Zs0e"
+                  size="20"
+                  type="text"
+                />
+              </td>
+            </tr>
+
+            <tr>
+              <td class="clsLeftAlign">
+                <label for="email">Email</label>
+              </td>
+              <td>
+                <input
+                  class="form-control"
+                  id="email"
+                  maxlength="80"
+                  name="email"
+                  size="20"
+                  type="text"
+                />
+              </td>
+            </tr>
+
+            <tr>
+              <td class="clsLeftAlign">
+                <label for="email">Phone</label>
+              </td>
+              <td>
+                <input
+                  class="form-control"
+                  id="phone"
+                  maxlength="40"
+                  name="phone"
+                  size="20"
+                  type="text"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td class="clsLeftAlign">
+                <label for="email">Inquiry Type</label>
+              </td>
+              <td>
+                <select
+                  style="width: 350px !important"
+                  class="form-control"
+                  id="00N78000000Zs1I"
+                  name="00N78000000Zs1I"
+                  title="Inquiry Type"
+                >
+                  <option value="Fulfillment">Fulfillment</option>
+                  <option value="Payment &amp; Refunds">
+                    Payment &amp; Refunds
+                  </option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td class="clsLeftAlign">
+                <label for="email">Subject</label>
+              </td>
+              <td>
+                <input
+                  class="form-control"
+                  id="subject"
+                  maxlength="80"
+                  name="subject"
+                  size="20"
+                  type="text"
+                />
+              </td>
+            </tr>
+
+            <tr>
+              <td class="clsLeftAlign">
+                <label for="email">Description</label>
+              </td>
+              <td>
+                <textarea
+                  rows="7"
+                  class="form-control"
+                  name="description"
+                ></textarea>
+              </td>
+            </tr>
+            <div
+              class="g-recaptcha"
+              data-sitekey="6LfG0PgkAAAAABP8q0NFhirBxcT3F7ICWLkK1XvA"
+            ></div>
+            <br />
+            <input type="submit" name="submit" />
+            <tr>
+              <td class="clsLeftAlign"></td>
+              <td style="text-align: left">
+                <input
+                  class="btn-success clsButton"
+                  type="submit"
+                  name="submit"
+                />
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
