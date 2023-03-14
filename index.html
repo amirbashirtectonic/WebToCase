@@ -10,7 +10,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://www.google.com/recaptcha/api.js"></script>
-     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
       function timestamp() {
         var response = document.getElementById("g-recaptcha-response");
@@ -26,11 +25,8 @@
       setInterval(timestamp, 500);
       function validate() {
         if (grecaptcha.getResponse() == "") {
-          swal({
-            title: "Error!",
-            text: "Please verify you are a human",
-            icon: "warning",
-          });
+         document.getElementById("captcha-error").innerHTML =
+          "Please verify you are a human";
           return false;
         } else {
           return true;
@@ -222,6 +218,7 @@
                   class="g-recaptcha"
                   data-sitekey="6LfG0PgkAAAAABP8q0NFhirBxcT3F7ICWLkK1XvA"
                 ></div>
+                <span id="captcha-error" style="color: red" />
               </td>
             </tr>
 
