@@ -23,6 +23,11 @@
         }
       }
       setInterval(timestamp, 500);
+      
+      function recaptcha_callback() {
+      document.getElementById("captcha-error").innerHTML = "";
+      }
+      
       function validate() {
         if (grecaptcha.getResponse() == "") {
          document.getElementById("captcha-error").innerHTML =
@@ -217,6 +222,7 @@
                 <div
                   class="g-recaptcha"
                   data-sitekey="6LfG0PgkAAAAABP8q0NFhirBxcT3F7ICWLkK1XvA"
+                  data-callback="recaptcha_callback"
                 ></div>
                 <span id="captcha-error" style="color: red" />
               </td>
